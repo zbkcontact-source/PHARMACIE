@@ -1,15 +1,18 @@
-# PHARMACIE
+# PHARMACY
 
-Plugin d'effets audio (VST3 + AU) : quatre modules, LSD, Cocaïne, Weed, Acide, chacun avec un interrupteur et une dose de 0 à 100 %. Tout est automatisable dans Ableton.
+Plugin d'effets audio (VST3 + AU) : cinq outils de studio, chacun avec ON/OFF, une dose (macro), deux réglages avancés et un mix, plus une section CLEAN globale. Moteur suréchantillonné ×2, transparent quand rien n'est activé.
 
-| Module | Ce que ça fait au son |
-|---|---|
-| LSD | Chorus/flanger qui flotte, panoramique qui tourne, grosse réverb |
-| Cocaïne | Pitch qui monte, compression écrasée, aigus agressifs, trémolo nerveux |
-| Weed | Pitch qui descend, son étouffé, bande qui pleure, réverb cotonneuse |
-| Acide | Filtre résonant façon 303, saturation, grain numérique, modulation en anneau |
+| Module | Outil | Réglages avancés | Ce que ça fait |
+|---|---|---|---|
+| WEED | TAPE | SPEED (7,5–30 ips), HISS | Saturation bande avec pré/dé-emphase, head bump et coupure des aigus selon la vitesse, compression douce, souffle |
+| COKE | PUNCH | ATTACK (5–50 ms), SUSTAIN (−100/+100) | Transient designer, présence 4 kHz, soft clipper |
+| KETA | GRAIN | SIZE (20–420 ms), SPRAY (0–1,5 s) | Nuage granulaire, gel du son à 100 % |
+| LSD | COLOR | RATE (0,1–6 Hz), DEPTH | Chorus d'ensemble, phaser 6 étages, largeur stéréo |
+| MDMA | ENRICH | TONE (warm ↔ bright), PULSE | Sub psychoacoustique, exciter, air, compression type OTT, glue, trémolo calé sur le tempo (croches) |
 
-En bas : **Mix** (dry/wet global) et **Sortie** (volume en dB).
+**CLEAN** (sous les modules) : de-harsh dynamique 2,5–6 kHz, chaleur dans les bas-médiums, aigus adoucis, leveler doux. Le pharmacien passe en lumière chaude et se détend.
+
+En bas : **MIX** (dry/wet global) et **OUTPUT** (volume en dB).
 
 ## Obtenir le plugin et un lien à partager (sans rien installer pour coder)
 
@@ -26,15 +29,15 @@ Chaque fois que tu modifies le code et que tu fais *Push* dans GitHub Desktop, u
 
 ## Installer sur Mac
 
-1. Télécharge `PHARMACIE-Mac.pkg`.
+1. Télécharge `PHARMACY-Mac.pkg`.
 2. Le plugin n'est pas signé par Apple : fais **clic droit > Ouvrir** sur le .pkg (pas double-clic). Si macOS bloque quand même : *Réglages Système > Confidentialité et sécurité > Ouvrir quand même*.
 3. Installe. Le VST3 va dans `/Library/Audio/Plug-Ins/VST3`, l'AU dans `/Library/Audio/Plug-Ins/Components`.
 4. Ableton : *Réglages > Plug-ins*, active **Use Audio Units v2** et/ou **Use VST3 Plug-In System Folders**, puis **Rescan**.
-5. Glisse **PHARMACIE** (rubrique Plug-ins, fabricant MARY) sur une piste ou un bus.
+5. Glisse **PHARMACY** (rubrique Plug-ins, fabricant MARY) sur une piste ou un bus.
 
 ## Installer sur Windows
 
-Dézippe `PHARMACIE-Windows-VST3.zip` dans `C:\Program Files\Common Files\VST3`, puis Rescan dans Ableton.
+Dézippe `PHARMACY-Windows-VST3.zip` dans `C:\Program Files\Common Files\VST3`, puis Rescan dans Ableton.
 
 ## Compiler soi-même (optionnel)
 

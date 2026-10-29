@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(Pharmacie VERSION 1.0.0)
+project(Pharmacie VERSION 4.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -26,7 +26,7 @@ juce_add_plugin(Pharmacie
     PLUGIN_MANUFACTURER_CODE Mary
     PLUGIN_CODE Phso
     FORMATS ${PLUGIN_FORMATS}
-    PRODUCT_NAME "PHARMACIE"
+    PRODUCT_NAME "PHARMACY"
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE
     NEEDS_MIDI_OUTPUT FALSE
@@ -35,6 +35,8 @@ juce_add_plugin(Pharmacie
     COPY_PLUGIN_AFTER_BUILD FALSE
     VST3_CATEGORIES Fx
     AU_MAIN_TYPE kAudioUnitType_Effect)
+
+juce_add_binary_data(PharmacieAssets SOURCES Assets/shop.jpg)
 
 target_sources(Pharmacie PRIVATE
     Source/PluginProcessor.cpp
@@ -54,6 +56,7 @@ target_link_libraries(Pharmacie
     PRIVATE
         juce::juce_audio_utils
         juce::juce_dsp
+        PharmacieAssets
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

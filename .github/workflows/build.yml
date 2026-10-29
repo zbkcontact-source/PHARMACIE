@@ -1,4 +1,4 @@
-name: Build PHARMACIE
+name: Build PHARMACY
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   mac:
-    runs-on: macos-14
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
 
@@ -23,23 +23,23 @@ jobs:
       - name: Signer et créer l'installeur .pkg
         run: |
           A=build/Pharmacie_artefacts/Release
-          codesign --force --deep -s - "$A/VST3/PHARMACIE.vst3"
-          codesign --force --deep -s - "$A/AU/PHARMACIE.component"
+          codesign --force --deep -s - "$A/VST3/PHARMACY.vst3"
+          codesign --force --deep -s - "$A/AU/PHARMACY.component"
           mkdir -p root/vst3 root/au
-          cp -R "$A/VST3/PHARMACIE.vst3" root/vst3/
-          cp -R "$A/AU/PHARMACIE.component" root/au/
+          cp -R "$A/VST3/PHARMACY.vst3" root/vst3/
+          cp -R "$A/AU/PHARMACY.component" root/au/
           for f in vst3 au; do
             pkgbuild --analyze --root root/$f $f.plist
             plutil -replace 0.BundleIsRelocatable -bool NO $f.plist
           done
-          pkgbuild --root root/vst3 --component-plist vst3.plist --identifier com.mary.pharmacie.vst3 --version 1.0.0 --install-location /Library/Audio/Plug-Ins/VST3 vst3.pkg
-          pkgbuild --root root/au --component-plist au.plist --identifier com.mary.pharmacie.au --version 1.0.0 --install-location /Library/Audio/Plug-Ins/Components au.pkg
-          productbuild --package vst3.pkg --package au.pkg PHARMACIE-Mac.pkg
+          pkgbuild --root root/vst3 --component-plist vst3.plist --identifier com.mary.pharmacy.vst3 --version 4.0.0 --install-location /Library/Audio/Plug-Ins/VST3 vst3.pkg
+          pkgbuild --root root/au --component-plist au.plist --identifier com.mary.pharmacy.au --version 4.0.0 --install-location /Library/Audio/Plug-Ins/Components au.pkg
+          productbuild --package vst3.pkg --package au.pkg PHARMACY-Mac.pkg
 
       - uses: actions/upload-artifact@v4
         with:
-          name: PHARMACIE-Mac
-          path: PHARMACIE-Mac.pkg
+          name: PHARMACY-Mac
+          path: PHARMACY-Mac.pkg
 
   windows:
     runs-on: windows-latest
@@ -54,12 +54,12 @@ jobs:
 
       - name: Zipper le VST3
         shell: pwsh
-        run: Compress-Archive -Path "build/Pharmacie_artefacts/Release/VST3/PHARMACIE.vst3" -DestinationPath PHARMACIE-Windows-VST3.zip
+        run: Compress-Archive -Path "build/Pharmacie_artefacts/Release/VST3/PHARMACY.vst3" -DestinationPath PHARMACY-Windows-VST3.zip
 
       - uses: actions/upload-artifact@v4
         with:
-          name: PHARMACIE-Windows
-          path: PHARMACIE-Windows-VST3.zip
+          name: PHARMACY-Windows
+          path: PHARMACY-Windows-VST3.zip
 
   release:
     needs: [mac, windows]
@@ -73,11 +73,11 @@ jobs:
       - name: Publier la release (lien de téléchargement)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: PHARMACIE v1.0.${{ github.run_number }}
+          tag_name: v4.0.${{ github.run_number }}
+          name: PHARMACY v4.0.${{ github.run_number }}
           make_latest: true
           body: |
-            **Mac** : télécharge `PHARMACIE-Mac.pkg`, clic droit > Ouvrir, puis installe (VST3 + AU).
-            **Windows** : dézippe `PHARMACIE-Windows-VST3.zip` dans `C:\Program Files\Common Files\VST3`.
-            Dans Ableton : Réglages > Plug-ins > Rescan, puis cherche PHARMACIE dans Plug-ins.
+            **Mac** : télécharge `PHARMACY-Mac.pkg`, clic droit > Ouvrir, puis installe (VST3 + AU).
+            **Windows** : dézippe `PHARMACY-Windows-VST3.zip` dans `C:\Program Files\Common Files\VST3`.
+            Dans Ableton : Réglages > Plug-ins > Rescan, puis cherche PHARMACY dans Plug-ins.
           files: dist/*
